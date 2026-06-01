@@ -1,6 +1,11 @@
-import type { FaqData } from "./faq.types";
+/**
+ * @module datas/faq-data
+ * FAQ content and data
+ */
 
-export const faqData: FaqData = {
+import type { FaqData } from "./faq.types"
+
+export const faqData = {
   title: "FAQs",
   categories: [
     {
@@ -106,4 +111,4 @@ export const faqData: FaqData = {
       ],
     },
   ],
-};
+} as const satisfies FaqData

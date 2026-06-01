@@ -1,27 +1,64 @@
 "use client"
 
+import type { FC, ReactNode } from "react"
 import * as React from "react"
-import { ThemeProvider as NextThemesProvider, useTheme } from "next-themes"
+import { ThemeProvider as NextThemesProvider } from "next-themes"
+import { useTheme } from "next-themes"
 
-function ThemeProvider({
-  children,
-  ...props
-}: React.ComponentProps<typeof NextThemesProvider>) {
-  return (
-    <NextThemesProvider
-      attribute="class"
-      defaultTheme="dark"
-      enableSystem
-      disableTransitionOnChange
-      {...props}
-    >
-      <ThemeHotkey />
-      {children}
-    </NextThemesProvider>
-  )
+interface CustomThemeProviderProps extends Omit<
+  React.ComponentProps<typeof NextThemesProvider>,
+  "children"
+> {
+  children: ReactNode
 }
 
-function isTypingTarget(target: EventTarget | null) {
+/**
+ * ThemeHotkey Component
+ * Allows toggling theme with 'D' key when not typing
+ */
+const ThemeHotkey: FC = () => {
+  const { resolvedTheme, setTheme } = useTheme()
+
+  React.useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent): void => {
+      // Skip if default prevented or key is repeating
+      if (event.defaultPrevented || event.repeat) {
+        return
+      }
+
+      // Skip if modifier keys are pressed
+      if (event.metaKey || event.ctrlKey || event.altKey) {
+        return
+      }
+
+      // Check if the key is 'd'
+      if (event.key.toLowerCase() !== "d") {
+        return
+      }
+
+      // Skip if typing in input-like elements
+      if (isTypingTarget(event.target)) {
+        return
+      }
+
+      // Toggle theme
+      setTheme(resolvedTheme === "dark" ? "light" : "dark")
+    }
+
+    window.addEventListener("keydown", handleKeyDown)
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown)
+    }
+  }, [resolvedTheme, setTheme])
+
+  return null
+}
+
+/**
+ * Check if target is a typing input element
+ */
+function isTypingTarget(target: EventTarget | null): boolean {
   if (!(target instanceof HTMLElement)) {
     return false
   }
@@ -34,38 +71,26 @@ function isTypingTarget(target: EventTarget | null) {
   )
 }
 
-function ThemeHotkey() {
-  const { resolvedTheme, setTheme } = useTheme()
-
-  React.useEffect(() => {
-    function onKeyDown(event: KeyboardEvent) {
-      if (event.defaultPrevented || event.repeat) {
-        return
-      }
-
-      if (event.metaKey || event.ctrlKey || event.altKey) {
-        return
-      }
-
-      if (event.key.toLowerCase() !== "d") {
-        return
-      }
-
-      if (isTypingTarget(event.target)) {
-        return
-      }
-
-      setTheme(resolvedTheme === "dark" ? "light" : "dark")
-    }
-
-    window.addEventListener("keydown", onKeyDown)
-
-    return () => {
-      window.removeEventListener("keydown", onKeyDown)
-    }
-  }, [resolvedTheme, setTheme])
-
-  return null
+/**
+ * ThemeProvider Component
+ * Provides theme context and hotkey functionality
+ */
+const ThemeProvider: FC<CustomThemeProviderProps> = ({
+  children,
+  ...props
+}) => {
+  return (
+    <NextThemesProvider
+      attribute="class"
+      defaultTheme="dark"
+      enableSystem
+      disableTransitionOnChange
+      {...props}
+    >
+      <ThemeHotkey />
+      {children}
+    </NextThemesProvider>
+  )
 }
 
 export { ThemeProvider }

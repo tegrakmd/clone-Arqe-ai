@@ -1,21 +1,40 @@
-"use client";
+"use client"
 
-import { useEffect, useRef, useState } from "react";
+import type { FC, VideoHTMLAttributes } from "react"
+import { useEffect, useRef, useState } from "react"
 
-type LazyVideoProps = Omit<
-  React.VideoHTMLAttributes<HTMLVideoElement>,
+interface LazyVideoProps extends Omit<
+  VideoHTMLAttributes<HTMLVideoElement>,
   "children"
-> & {
-  src: string;
-  /** Load immediately (hero / above-the-fold). */
-  priority?: boolean;
-  /** Load as soon as the component mounts (e.g. carousel duplicates). */
-  eager?: boolean;
-  /** When false, video is paused even if loaded. */
-  active?: boolean;
-};
+> {
+  /** Video source URL */
+  src: string
 
-export function LazyVideo({
+  /** Load immediately (hero / above-the-fold content) */
+  priority?: boolean
+
+  /** Load as soon as the component mounts (e.g., carousel duplicates) */
+  eager?: boolean
+
+  /** Controls playback state when loaded */
+  active?: boolean
+}
+
+/**
+ * Lazy-loading video component with intersection observer
+ * Optimizes performance by deferring video loading until visible
+ *
+ * @example
+ * ```tsx
+ * <LazyVideo
+ *   src="/video.mp4"
+ *   priority={false}
+ *   active={true}
+ *   className="w-full h-auto"
+ * />
+ * ```
+ */
+export const LazyVideo: FC<LazyVideoProps> = ({
   src,
   priority = false,
   eager = false,
@@ -23,52 +42,67 @@ export function LazyVideo({
   className,
   autoPlay,
   ...props
-}: LazyVideoProps) {
-  const ref = useRef<HTMLVideoElement>(null);
-  const [shouldLoad, setShouldLoad] = useState(priority || eager);
+}) => {
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [shouldLoad, setShouldLoad] = useState<boolean>(priority || eager)
 
+  // Setup intersection observer for lazy loading
   useEffect(() => {
-    if (priority || eager) return;
+    // Skip observer if already loading
+    if (priority || eager) return
 
-    const el = ref.current;
-    if (!el) return;
+    const videoElement = videoRef.current
+    if (!videoElement) return
 
-    const observer = new IntersectionObserver(
+    const intersectionObserver = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setShouldLoad(true);
-          observer.disconnect();
+          setShouldLoad(true)
+          intersectionObserver.disconnect()
         }
       },
-      { rootMargin: "300px" },
-    );
+      { rootMargin: "300px" }
+    )
 
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [priority, eager]);
+    intersectionObserver.observe(videoElement)
 
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || !shouldLoad) return;
-
-    if (active && autoPlay !== false) {
-      void el.play().catch(() => {});
-    } else {
-      el.pause();
+    return () => {
+      intersectionObserver.disconnect()
     }
-  }, [active, autoPlay, shouldLoad]);
+  }, [priority, eager])
+
+  // Handle playback based on active state
+  useEffect(() => {
+    const videoElement = videoRef.current
+    if (!videoElement || !shouldLoad) return
+
+    const handlePlayback = async (): Promise<void> => {
+      try {
+        if (active && autoPlay !== false) {
+          await videoElement.play()
+        } else {
+          videoElement.pause()
+        }
+      } catch (error) {
+        // Playback might be blocked by browser policy
+        console.debug("Video playback control:", error)
+      }
+    }
+
+    void handlePlayback()
+  }, [active, autoPlay, shouldLoad])
 
   return (
     <video
-      ref={ref}
+      ref={videoRef}
       muted
       playsInline
       preload={priority || eager ? "auto" : "none"}
-      aria-hidden
+      aria-hidden="true"
       className={className}
       {...props}
     >
       {shouldLoad && <source src={src} type="video/mp4" />}
     </video>
-  );
+  )
 }

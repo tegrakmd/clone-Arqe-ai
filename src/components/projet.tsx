@@ -143,22 +143,28 @@ const CreativeWork = () => {
 
   // ---- Gestion du retour à la boucle centrale (wrapping) ----
   useEffect(() => {
+    let timeout: ReturnType<typeof setTimeout> | null = null
+
     if (currentIndex >= TOTAL_ORIGINAL * 2) {
       // Trop à droite → on revient au set du milieu sans animation
-      const timeout = setTimeout(() => {
+      timeout = setTimeout(() => {
         setIsTransitioning(false)
         setCurrentIndex(currentIndex - TOTAL_ORIGINAL)
         requestAnimationFrame(() => setIsTransitioning(true))
       }, 400)
-      return () => clearTimeout(timeout)
     } else if (currentIndex < TOTAL_ORIGINAL) {
       // Trop à gauche → on revient au set du milieu sans animation
-      const timeout = setTimeout(() => {
+      timeout = setTimeout(() => {
         setIsTransitioning(false)
         setCurrentIndex(currentIndex + TOTAL_ORIGINAL)
         requestAnimationFrame(() => setIsTransitioning(true))
       }, 400)
-      return () => clearTimeout(timeout)
+    }
+
+    return () => {
+      if (timeout !== null) {
+        clearTimeout(timeout)
+      }
     }
   }, [currentIndex])
 
