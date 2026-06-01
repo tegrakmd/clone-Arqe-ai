@@ -61,6 +61,7 @@ export function PersonnalBoard() {
               sizes="(max-width: 711px) 25vw, 180px"
               className="object-cover"
               loading="eager"
+              fetchPriority="high"
               aria-hidden
             />
           </div>
@@ -82,6 +83,7 @@ export function PersonnalBoard() {
               fill
               sizes="(max-width: 711px) 44vw, 314px"
               className="object-cover"
+              fetchPriority="high"
             />
             <div className="absolute inset-0 bg-neutral-900/20" />
             <div className="absolute right-4 bottom-4 flex flex-col gap-2">

@@ -13,7 +13,7 @@ export function HeroSection() {
         <div className="flex flex-col-reverse items-center gap-12.5 sm:flex-col sm:gap-15">
           <div className="mx-auto flex max-w-90 flex-col items-center gap-3.75">
             <h1
-              className="max-w-65 text-center text-[40px] leading-8.5 tracking-[-0.1rem] text-foreground sm:max-w-none sm:text-[60px] sm:leading-[0.85] dark:text-white"
+              className="max-w-65 text-center text-[40px] leading-8.5 tracking-[-0.1rem] text-foreground sm:max-w-none sm:text-[60px] sm:leading-[0.85]"
               style={{ fontWeight: 600 }}
             >
               <span>Art directed stock library</span>

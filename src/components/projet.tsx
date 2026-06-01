@@ -247,6 +247,7 @@ const CreativeWork = () => {
                       sizes="(max-width: 1024px) 45vw, 275px"
                       className="object-cover"
                       loading={item.id === "developer" ? "eager" : "lazy"}
+                      fetchPriority={item.id === "developer" ? "high" : "auto"}
                     />
                   ) : isItemNearActive(index) ? (
                     <LazyVideo
