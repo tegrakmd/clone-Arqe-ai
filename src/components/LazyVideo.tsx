@@ -99,6 +99,7 @@ export const LazyVideo: FC<LazyVideoProps> = ({
       playsInline
       preload={priority || eager ? "auto" : "none"}
       aria-hidden="true"
+      inert
       className={className}
       {...props}
     >

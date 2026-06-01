@@ -70,6 +70,7 @@ const Navbar: FC = () => {
               <nav
                 className="flex flex-col gap-4 px-[15px] pt-5 pb-2.5"
                 aria-hidden={!isMenuOpen}
+                inert={!isMenuOpen}
               >
                 <div className="flex flex-col gap-4 space-y-4">
                   <NavLink
