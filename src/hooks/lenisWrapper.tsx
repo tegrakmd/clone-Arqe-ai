@@ -28,8 +28,8 @@ interface LenisProviderProps {
 
 export const LenisProvider: FC<LenisProviderProps> = ({ children }) => {
   const lenisRef = useRef<Lenis | null>(null)
-  const tickerRef = useRef<boolean>(false)
-  const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  // const tickerRef = useRef<boolean>(false)
+  // const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     // Respect user motion preferences
@@ -42,45 +42,35 @@ export const LenisProvider: FC<LenisProviderProps> = ({ children }) => {
       }
     }
 
-    // Initialize Lenis with smooth scroll settings
+    // Initialize Lenis
     const lenis = new Lenis({
-      duration: 1.5,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      duration: 2.2, // Note: l'option 'duration' est souvent ignorée dans les versions récentes au profit de 'lerp'
+      easing: (t: number) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 2,
+      wheelMultiplier: 1.3,
+      touchMultiplier: 2.5,
+      syncTouch: true,
+      syncTouchLerp: 0.075,
+      lerp: 0.1,
     })
 
     lenisRef.current = lenis
     lenisInstance = lenis
 
-    // Synchronize ScrollTrigger with Lenis scroll events
-    const handleScroll = (): void => {
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current)
-      }
+    // Synchronisation de ScrollTrigger avec Lenis
+    lenis.on("scroll", ScrollTrigger.update)
 
-      scrollTimeoutRef.current = setTimeout(() => {
-        ScrollTrigger.update()
-      }, 16)
-    }
-
-    lenis.on("scroll", handleScroll)
-
-    // Setup animation frame ticker
+    // Utiliser le Ticker de GSAP pour rafraîchir Lenis (Meilleure pratique)
     const updateFrame = (time: number): void => {
+      // gsap.ticker donne le temps en secondes, lenis a besoin de millisecondes
       lenis.raf(time * 1000)
-      if (tickerRef.current) {
-        requestAnimationFrame(updateFrame)
-      }
     }
 
-    tickerRef.current = true
-    requestAnimationFrame(updateFrame)
+    gsap.ticker.add(updateFrame)
 
-    // Optimize GSAP ticker
+    // Optimize GSAP ticker for smooth performance
     gsap.ticker.lagSmoothing(0)
 
     // Initial ScrollTrigger refresh
@@ -88,12 +78,7 @@ export const LenisProvider: FC<LenisProviderProps> = ({ children }) => {
 
     // Cleanup function
     return () => {
-      tickerRef.current = false
-
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current)
-      }
-
+      gsap.ticker.remove(updateFrame) // Retirer l'événement GSAP
       lenis.destroy()
       lenisRef.current = null
       lenisInstance = null
