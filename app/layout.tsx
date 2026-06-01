@@ -1,14 +1,14 @@
-import { Geist, Geist_Mono } from "next/font/google"
-
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
+import Navbar from "@/components/navbar"
+import localFont from "next/font/local"
+import { LenisProvider } from "@/hooks/lenisWrapper"
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'})
-
-const fontMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
+const suisseIntl = localFont({
+  src: "../fonts/suisse-intl.ttf",
+  variable: "--font-suisse-intl",
+  display: "swap",
 })
 
 export default function RootLayout({
@@ -20,10 +20,21 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("antialiased", fontMono.variable, "font-sans", geist.variable)}
+      className={cn(
+        "antialiased",
+
+        suisseIntl.variable,
+        "font-sans"
+      )}
     >
-      <body>
-        <ThemeProvider>{children}</ThemeProvider>
+      <body className="min-h-full w-full bg-black px-px md:px-2">
+        <ThemeProvider>
+          <LenisProvider>
+            {" "}
+            <Navbar />
+            {children}
+          </LenisProvider>
+        </ThemeProvider>
       </body>
     </html>
   )
