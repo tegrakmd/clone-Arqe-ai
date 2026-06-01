@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next"
 import localFont from "next/font/local"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
+import { Analytics } from "@vercel/analytics/next"
 import Navbar from "@/components/navbar"
 import { LenisProvider } from "@/hooks/lenisWrapper"
 import { rootMetadata } from "@/lib/metadata"
@@ -48,6 +49,8 @@ export default function RootLayout({ children }: LayoutProps) {
           <ThemeProvider>
             <Navbar />
             {children}
+
+            <Analytics />
           </ThemeProvider>
         </LenisProvider>
       </body>

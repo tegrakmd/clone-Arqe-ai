@@ -10,19 +10,19 @@ export const NAVIGATION_ROUTES = [
   },
   {
     label: "Gallery",
-    href: "#",
+    href: "/",
   },
   {
     label: "Pricing",
-    href: "#",
+    href: "/",
   },
   {
     label: "About",
-    href: "#",
+    href: "/",
   },
   {
     label: "Contact",
-    href: "#",
+    href: "/",
   },
 ] as const
 
