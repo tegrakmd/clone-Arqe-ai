@@ -7,17 +7,14 @@ import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { isCSR } from "@/lib/validators"
 
-// Register ScrollTrigger plugin once
+// Enregistrer ScrollTrigger uniquement côté client
 if (isCSR()) {
   gsap.registerPlugin(ScrollTrigger)
 }
 
-// Singleton instance for external access
+// Instance globale pour y accéder depuis d'autres composants si besoin
 let lenisInstance: Lenis | null = null
 
-/**
- * Get the current Lenis instance
- */
 export function getLenis(): Lenis | null {
   return lenisInstance
 }
@@ -28,11 +25,9 @@ interface LenisProviderProps {
 
 export const LenisProvider: FC<LenisProviderProps> = ({ children }) => {
   const lenisRef = useRef<Lenis | null>(null)
-  // const tickerRef = useRef<boolean>(false)
-  // const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
-    // Respect user motion preferences
+    // Respecter les préférences système de réduction des animations
     if (isCSR()) {
       const motionPreference = window.matchMedia(
         "(prefers-reduced-motion: reduce)"
@@ -42,43 +37,45 @@ export const LenisProvider: FC<LenisProviderProps> = ({ children }) => {
       }
     }
 
-    // Initialize Lenis
+    // Initialisation de Lenis
     const lenis = new Lenis({
-      duration: 2.2, // Note: l'option 'duration' est souvent ignorée dans les versions récentes au profit de 'lerp'
-      easing: (t: number) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
-      orientation: "vertical",
-      gestureOrientation: "vertical",
-      smoothWheel: true,
-      wheelMultiplier: 1.3,
+      lerp: 0.1, // Contrôle la fluidité (0 à 1)
+      wheelMultiplier: 1.3, // Vitesse de la molette sur desktop
+      smoothWheel: true, // Smooth scroll activé pour la souris
+
+      // --- OPTIMISATION MOBILE ---
+      // false = laisse le scroll tactile natif (plus naturel et performant)
+      // true = force le smooth scroll de Lenis sur tactile (uniquement si tu as des animations GSAP "scrub" très complexes)
+      syncTouch: false,
       touchMultiplier: 2.5,
-      syncTouch: true,
-      syncTouchLerp: 0.075,
-      lerp: 0.1,
     })
 
     lenisRef.current = lenis
     lenisInstance = lenis
 
-    // Synchronisation de ScrollTrigger avec Lenis
+    // Synchroniser la position de ScrollTrigger avec le scroll de Lenis
     lenis.on("scroll", ScrollTrigger.update)
 
-    // Utiliser le Ticker de GSAP pour rafraîchir Lenis (Meilleure pratique)
+    // Utiliser le Ticker de GSAP pour rafraîchir Lenis à chaque frame
+    // C'est ce qui garantit qu'il n'y ait aucun "jitter" (saccade) entre le scroll et les animations
     const updateFrame = (time: number): void => {
-      // gsap.ticker donne le temps en secondes, lenis a besoin de millisecondes
+      // gsap.ticker.time est en secondes, Lenis attend des millisecondes
       lenis.raf(time * 1000)
     }
 
     gsap.ticker.add(updateFrame)
 
-    // Optimize GSAP ticker for smooth performance
+    // Empêche GSAP d'essayer de compenser les lags, ce qui perturberait le scroll
     gsap.ticker.lagSmoothing(0)
 
-    // Initial ScrollTrigger refresh
-    ScrollTrigger.refresh()
+    // Un léger délai pour s'assurer que le DOM est complètement peint avant de calculer les hauteurs
+    setTimeout(() => {
+      ScrollTrigger.refresh()
+    }, 100)
 
-    // Cleanup function
+    // Nettoyage au démontage du composant
     return () => {
-      gsap.ticker.remove(updateFrame) // Retirer l'événement GSAP
+      gsap.ticker.remove(updateFrame)
       lenis.destroy()
       lenisRef.current = null
       lenisInstance = null
