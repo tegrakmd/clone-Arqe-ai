@@ -82,10 +82,7 @@ function FaqAccordionItem({
         }}
       >
         <div style={{ overflow: "hidden" }}>
-          <div
-            className="max-w-[640px] pt-[5px] pb-[20px]"
-            style={{ opacity: 0.5 }}
-          >
+          <div className="max-w-160 pt-1.25 pb-5" style={{ opacity: 0.5 }}>
             <p
               className="text-[16px] leading-[1.3] text-white"
               style={{ fontWeight: 400 }}

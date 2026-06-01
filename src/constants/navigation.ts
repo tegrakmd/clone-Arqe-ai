@@ -10,44 +10,44 @@ export const NAVIGATION_ROUTES = [
   },
   {
     label: "Gallery",
-    href: "#gallery",
+    href: "#",
   },
   {
     label: "Pricing",
-    href: "#pricing",
+    href: "#",
   },
   {
     label: "About",
-    href: "#about",
+    href: "#",
   },
   {
     label: "Contact",
-    href: "#contact",
+    href: "#",
   },
 ] as const
 
 export const AUTH_ROUTES = [
   {
     label: "Sign In",
-    href: "/signin",
+    href: "/",
   },
   {
     label: "Sign Up",
-    href: "/signup",
+    href: "/",
   },
 ] as const
 
 export const SOCIAL_LINKS = [
   {
     name: "Twitter",
-    url: "https://twitter.com/arqe",
+    url: "https://github.com/tegrakmd",
   },
   {
     name: "Instagram",
-    url: "https://instagram.com/arqe",
+    url: "https://github.com/tegrakmd",
   },
   {
     name: "LinkedIn",
-    url: "https://linkedin.com/company/arqe",
+    url: "https://github.com/tegrakmd",
   },
 ] as const

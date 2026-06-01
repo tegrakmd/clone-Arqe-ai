@@ -23,10 +23,10 @@ export const HeroSection: FC<HeroSectionProps> = ({ className = "" }) => {
             Browse &amp; download curated AI visuals — royalty free, 4K, created
             with intent.
           </p>
-          <div className="mt-[15px]">
+          <div className="mt-3.75">
             <a
               href="/signup"
-              className="inline-block rounded-[8px] bg-[#fafafa] px-[24px] py-[14px] text-[14px] leading-[14px] font-medium tracking-[-0.28px] text-[#0a0a0a] transition-opacity duration-200 hover:opacity-80"
+              className="inline-block rounded-[8px] bg-[#fafafa] px-6 py-3.5 text-[14px] leading-3.5 font-medium tracking-[-0.28px] text-[#0a0a0a] transition-opacity duration-200 hover:opacity-80"
             >
               Get started
             </a>

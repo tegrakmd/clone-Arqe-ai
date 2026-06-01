@@ -26,18 +26,6 @@ interface LenisProviderProps {
   children: ReactNode
 }
 
-/**
- * LenisProvider Component
- * Provides smooth scroll functionality with GSAP ScrollTrigger integration
- * Respects prefers-reduced-motion preference
- *
- * @example
- * ```tsx
- * <LenisProvider>
- *   <YourApp />
- * </LenisProvider>
- * ```
- */
 export const LenisProvider: FC<LenisProviderProps> = ({ children }) => {
   const lenisRef = useRef<Lenis | null>(null)
   const tickerRef = useRef<boolean>(false)

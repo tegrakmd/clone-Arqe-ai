@@ -11,7 +11,7 @@ export type IconComponent = FC<IconProps>
 // ─────────────────────── Logo Icon ──────────────────────
 export const LogoIcon: IconComponent = (props) => (
   <svg
-    className="h-[22px] w-[51px] text-[#fafafa]"
+    className="h-5.5 w-12.75 text-[#fafafa]"
     viewBox="0 0 599 256"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
