@@ -100,6 +100,8 @@ const CreativeWork = () => {
 
   // ---- Mesure conteneur + nombre d'éléments visibles ----
   useEffect(() => {
+    let resizeTimeout: ReturnType<typeof setTimeout> | null = null
+
     const updateLayout = () => {
       if (containerRef.current) {
         setContainerWidth(containerRef.current.clientWidth)
@@ -110,9 +112,18 @@ const CreativeWork = () => {
           : VISIBLE_MOBILE
       )
     }
+
+    const debouncedResize = () => {
+      if (resizeTimeout) clearTimeout(resizeTimeout)
+      resizeTimeout = setTimeout(updateLayout, 150)
+    }
+
     updateLayout()
-    window.addEventListener("resize", updateLayout)
-    return () => window.removeEventListener("resize", updateLayout)
+    window.addEventListener("resize", debouncedResize)
+    return () => {
+      window.removeEventListener("resize", debouncedResize)
+      if (resizeTimeout) clearTimeout(resizeTimeout)
+    }
   }, [])
 
   // ---- Auto-play ----
@@ -120,7 +131,7 @@ const CreativeWork = () => {
     if (intervalRef.current) clearInterval(intervalRef.current)
     intervalRef.current = setInterval(() => {
       setCurrentIndex((prev) => prev + 1)
-    }, 2800)
+    }, 3500) // Augmenté pour réduire les updates fréquentes
   }, [])
 
   useEffect(() => {

@@ -19,6 +19,7 @@ export function getLenis() {
 
 export function LenisProvider({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null)
+  const tickerRef = useRef<boolean>(false)
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -29,39 +30,46 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
     }
     // 1. Initialisation avec des réglages plus "smooth"
     const lenis = new Lenis({
-      duration: 1.5, // Augmenté de 1.2 à 1.5 pour plus d'inertie
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Courbe exponentielle classique
+      duration: 1.5,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      wheelMultiplier: 1, // Si c'est trop lent, augmente à 1.2 ou 1.5
-      touchMultiplier: 2, // Meilleure réactivité sur mobile
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
     })
 
     lenisRef.current = lenis
     lenisInstance = lenis
 
-    // 2. Synchronisation ScrollTrigger
-    // Dit à ScrollTrigger de mettre à jour ses calculs quand Lenis scroll
-    lenis.on("scroll", ScrollTrigger.update)
+    // 2. Synchronisation ScrollTrigger sans bloquer à chaque frame
+    let scrollTimeout: ReturnType<typeof setTimeout> | null = null
+    lenis.on("scroll", () => {
+      if (scrollTimeout) clearTimeout(scrollTimeout)
+      scrollTimeout = setTimeout(() => {
+        ScrollTrigger.update()
+      }, 16)
+    })
 
-    // 3. Boucle d'animation (Ticker) optimisée
-    // On utilise le ticker de GSAP pour piloter Lenis. C'est CRUCIAL pour la synchro.
-    const update = (time: number) => {
+    // 3. Ticker optimisé - utiliser requestAnimationFrame directement
+    const updateFrame = (time: number) => {
       lenis.raf(time * 1000)
+      if (tickerRef.current) {
+        requestAnimationFrame(updateFrame)
+      }
     }
 
-    // On ajoute la fonction au ticker GSAP.
-    // Le lagSmoothing(0) est vital pour éviter des sauts lors de calculs lourds.
-    gsap.ticker.add(update)
+    tickerRef.current = true
+    requestAnimationFrame(updateFrame)
     gsap.ticker.lagSmoothing(0)
 
-    // Initial refresh pour s'assurer que tout est calé au chargement
+    // Initial refresh
     ScrollTrigger.refresh()
 
     return () => {
       // Nettoyage propre
-      gsap.ticker.remove(update)
+      tickerRef.current = false
+      if (scrollTimeout) clearTimeout(scrollTimeout)
       lenis.destroy()
       lenisRef.current = null
       lenisInstance = null
