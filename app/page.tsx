@@ -8,7 +8,7 @@ import { AdvancedSearch } from "@/components/advanced"
 
 export default function Page() {
   return (
-    <div className="item flex min-h-svh flex-col p-6">
+    <div className="item flex min-h-svh flex-col p-2 md:p-4">
       <HeroSection />
       <CuratedSection />
       <PersonnalBoard />

@@ -27,7 +27,7 @@ export default function RootLayout({
         "font-sans"
       )}
     >
-      <body className="min-h-full w-full bg-black px-px md:px-2">
+      <body className="min-h-full w-full bg-black">
         <ThemeProvider>
           <LenisProvider>
             {" "}
