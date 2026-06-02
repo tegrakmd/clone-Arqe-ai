@@ -228,7 +228,6 @@ const CreativeWork = () => {
               display: "flex",
               gap: GAP,
               paddingBottom: 16,
-
               willChange: "transform",
               transform: `translateX(${translateX}px)`,
               transition: isTransitioning ? "transform 0.4s ease-out" : "none",

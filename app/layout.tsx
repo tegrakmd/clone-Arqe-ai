@@ -8,6 +8,8 @@ import { LenisProvider } from "@/hooks/lenisWrapper"
 import { rootMetadata } from "@/lib/metadata"
 import { SITE_NAME } from "@/constants"
 import type { LayoutProps } from "@/types"
+import Footer from "@/components/footer"
+
 import "./globals.css"
 
 const suisseIntl = localFont({
@@ -49,7 +51,7 @@ export default function RootLayout({ children }: LayoutProps) {
           <ThemeProvider>
             <Navbar />
             {children}
-
+<Footer />
             <Analytics />
           </ThemeProvider>
         </LenisProvider>
