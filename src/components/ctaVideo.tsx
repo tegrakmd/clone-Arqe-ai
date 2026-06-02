@@ -3,7 +3,7 @@ import { CTA_VIDEO } from "@/datas/videos"
 
 export function Cta() {
   return (
-    <section id="video" className="px-5 pb-0 sm:px-6 lg:px-10">
+    <section id="video" className="px-5  pb-0 sm:px-6 lg:px-10">
       <div className="relative aspect-[2.3/1] min-h-[400] w-full overflow-hidden rounded-[14px]">
         <div className="absolute inset-0">
           <LazyVideo
