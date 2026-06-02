@@ -72,7 +72,7 @@ const Navbar: FC = () => {
                 aria-hidden={!isMenuOpen}
                 inert={!isMenuOpen}
               >
-                <div className="flex flex-col  space-y-2">
+                <div className="flex flex-col *:font-[600] *:text-[16px] space-y-1 mb-2">
                   <NavLink
                     href="#features"
                     label="Features"
@@ -89,7 +89,7 @@ const Navbar: FC = () => {
                 <div className="h-px w-full bg-white/20" />
 
                 <a
-                  className="flex h-[42px] w-full items-center justify-center rounded-[8px] bg-[#fafafa] text-[11px] font-medium tracking-[-0.28px] text-[#0a0a0a] transition-opacity duration-200 hover:opacity-80"
+                  className="flex h-[42px] w-full items-center justify-center rounded-[8px] bg-[#fafafa] text-[14px] font-[600] tracking-[-0.28px] text-[#0a0a0a] transition-opacity duration-200 hover:opacity-80"
                   href="/signup"
                   onClick={closeMenu}
                 >
