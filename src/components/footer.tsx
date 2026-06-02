@@ -16,14 +16,14 @@ const socialLinks = [
 
 const Footer = () => {
   return (
-    <div className="max-w-[922px] mx-auto">
+    <div className="max-w-[922px] mx-auto  p-6 px-12">
       {/* Link Columns */}
       <div className="flex gap-[50px] mb-[100px] sm:mb-[200px]">
         {/* Product Column */}
         <div className="flex flex-col">
           <p
             className="text-[#a1a1a1] text-[14px] leading-[22px] tracking-[-0.14px] mb-[14px] sm:mb-[25px]"
-            style={{ fontFamily: "Suisse Intl, system-ui, sans-serif", fontWeight: 500 }}
+            style={{ fontWeight: 500 }}
           >
             Product
           </p>
@@ -34,7 +34,7 @@ const Footer = () => {
                   key={link.label}
                   href={link.href}
                   className="text-[#fafafa] text-[14px] leading-[1.4] tracking-[-0.14px] hover:opacity-70 transition-opacity py-[6px] sm:py-0"
-                  style={{ fontFamily: "Suisse Intl, system-ui, sans-serif", fontWeight: 500 }}
+                  style={{ fontWeight: 500 }}
                 >
                   {link.label}
                 </Link>
@@ -53,7 +53,7 @@ const Footer = () => {
         <div className="flex flex-col">
           <p
             className="text-[#a1a1a1] text-[14px] leading-[22px] tracking-[-0.14px] mb-[14px] sm:mb-[25px]"
-            style={{ fontFamily: "Suisse Intl, system-ui, sans-serif", fontWeight: 500 }}
+            style={{ fontWeight: 500 }}
           >
             Social
           </p>
@@ -65,7 +65,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#fafafa] text-[14px] leading-[1.4] tracking-[-0.14px] hover:opacity-70 transition-opacity py-[6px] sm:py-0"
-                style={{ fontFamily: "Suisse Intl, system-ui, sans-serif", fontWeight: 500 }}
+                style={{ fontWeight: 500 }}
               >
                 {link.label}
               </a>
@@ -78,7 +78,7 @@ const Footer = () => {
       <div className="flex flex-row justify-between items-center">
         <p
           className="text-[#737373] text-[11px] leading-[22px]"
-          style={{ fontFamily: "Suisse Intl, system-ui, sans-serif", fontWeight: 500 }}
+          style={{  fontWeight: 500 }}
         >
           © 2026 Arqé
         </p>
@@ -86,14 +86,14 @@ const Footer = () => {
           <Link
             href="/privacy"
             className="text-[#737373] text-[11px] leading-[22px] hover:opacity-70 transition-opacity"
-            style={{ fontFamily: "Suisse Intl, system-ui, sans-serif", fontWeight: 500 }}
+            style={{  fontWeight: 500 }}
           >
             Privacy Policy
           </Link>
           <Link
             href="/terms"
             className="text-[#737373] text-[11px] leading-[22px] hover:opacity-70 transition-opacity"
-            style={{ fontFamily: "Suisse Intl, system-ui, sans-serif", fontWeight: 500 }}
+            style={{ fontWeight: 500 }}
           >
             Terms of use
           </Link>

@@ -13,10 +13,12 @@ import Footer from "@/components/footer"
 import "./globals.css"
 
 const suisseIntl = localFont({
-  src: "../fonts/suisse-intl.ttf",
+src:"../fonts/suisse-intl.ttf",
   variable: "--font-suisse-intl",
   display: "swap",
   fallback: ["system-ui", "sans-serif"],
+  weight: "400",
+  style: "normal",
 })
 
 export const metadata: Metadata = rootMetadata
