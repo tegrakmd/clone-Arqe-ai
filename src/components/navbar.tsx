@@ -14,7 +14,7 @@ interface NavLinkProps {
 const NavLink: FC<NavLinkProps> = ({ href, label, onClick }) => (
   <a
     href={href}
-    className="text-[14px] font-medium text-[#fafafa] transition-opacity duration-200 hover:opacity-70"
+    className="text-[13px] font-medium text-[#fafafa] transition-opacity duration-200 hover:opacity-70"
     onClick={onClick}
   >
     {label}
@@ -35,7 +35,7 @@ const Navbar: FC = () => {
   return (
     <>
       {/* Mobile Menu */}
-      <div className="fixed top-0 right-0 left-0 z-50 px-5 pt-2 lg:hidden">
+      <div className="fixed top-0 right-0 left-0 z-50 px-6 pt-4 lg:hidden">
         <div
           className="overflow-hidden rounded-[10px] p-2.5 font-sans backdrop-blur-[15px]"
           style={{ backgroundColor: "rgba(23, 23, 23, 0.8)" }}
@@ -52,7 +52,7 @@ const Navbar: FC = () => {
             <button
               type="button"
               onClick={toggleMenu}
-              className="flex h-11 w-11 items-center justify-center"
+              className="flex size-11 items-center justify-center"
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={isMenuOpen}
             >
@@ -89,7 +89,7 @@ const Navbar: FC = () => {
                 <div className="h-px w-full bg-white/20" />
 
                 <a
-                  className="flex h-[42px] w-full items-center justify-center rounded-[8px] bg-[#fafafa] text-[14px] font-medium tracking-[-0.28px] text-[#0a0a0a] transition-opacity duration-200 hover:opacity-80"
+                  className="flex h-[42px] w-full items-center justify-center rounded-[8px] bg-[#fafafa] text-[11px] font-medium tracking-[-0.28px] text-[#0a0a0a] transition-opacity duration-200 hover:opacity-80"
                   href="/signup"
                   onClick={closeMenu}
                 >
@@ -107,7 +107,7 @@ const Navbar: FC = () => {
         style={{ paddingTop: 40 }}
       >
         <div
-          className="w-full max-w-[800px] items-center overflow-hidden rounded-[10px] p-[10px] backdrop-blur-[15px] lg:flex"
+          className="w-full max-w-[800px] items-center overflow-hidden rounded-[10px] p-[8px] backdrop-blur-[15px] lg:flex"
           style={{ backgroundColor: "rgba(23, 23, 23, 0.8)" }}
         >
           <div className="flex w-full items-center justify-between">
@@ -128,15 +128,15 @@ const Navbar: FC = () => {
             </a>
 
             {/* Right Buttons */}
-            <div className="flex items-center gap-[8px]">
+            <div className="flex items-center gap-[4px] *:font-[500]">
               <a
-                className="flex items-center justify-center rounded-[8px] px-[24px] py-[14px] font-[600] text-[#fafafa] transition-opacity duration-200 hover:opacity-70"
+                className="flex text-[14px] items-center justify-center rounded-[8px] px-[24px] py-[14px]   text-[#fafafa] transition-opacity duration-200 hover:opacity-70"
                 href="/login"
               >
                 Log in
               </a>
               <a
-                className="flex items-center justify-center rounded-[8px] bg-[#fafafa] px-[20px] py-[10px] font-medium text-[#0a0a0a] transition-opacity duration-200 hover:opacity-80"
+                className="flex text-[14px] items-center justify-center rounded-[8px] bg-[#fafafa] px-[22px] py-[10px]   text-[#0a0a0a] transition-opacity duration-200 hover:opacity-80"
                 href="/signup"
               >
                 Sign Up

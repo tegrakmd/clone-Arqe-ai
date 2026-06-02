@@ -7,9 +7,8 @@ function FaqIcon({ open }: { open: boolean }) {
   return (
     <div className="relative size-5 shrink-0">
       <svg
-        className={`absolute inset-0 h-5 w-5 text-white transition-opacity duration-200 ${
-          open ? "opacity-0" : "opacity-100"
-        }`}
+        className={`absolute inset-0 h-5 w-5 text-white transition-opacity duration-200 ${open ? "opacity-0" : "opacity-100"
+          }`}
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -66,8 +65,8 @@ function FaqAccordionItem({
         className="flex w-full items-center justify-between pt-[20px] pb-[14px] text-left transition-opacity duration-200 hover:opacity-80 sm:py-[17px]"
       >
         <span
-          className="max-w-[214px] pr-4 text-[20px] leading-[22px] tracking-[-0.8px] text-white sm:max-w-none"
-          style={{ fontWeight: 500 }}
+          className="max-w-[214px] pr-4 text-[20px] leading-[22px] tracking-[-0.7px] text-white sm:max-w-none"
+          style={{ fontWeight: 600 }}
         >
           {question}
         </span>
