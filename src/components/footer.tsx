@@ -16,24 +16,24 @@ const socialLinks = [
 
 const Footer = () => {
   return (
-    <div className="max-w-[922px] mx-auto  p-6 px-12">
+    <div className="max-w-[922px] mx-auto  p-8 md:px-12">
       {/* Link Columns */}
       <div className="flex gap-[50px] mb-[100px] sm:mb-[200px]">
         {/* Product Column */}
         <div className="flex flex-col">
           <p
-            className="text-[#a1a1a1] text-[14px] leading-[22px] tracking-[-0.14px] mb-[14px] sm:mb-[25px]"
+            className="text-[#a1a1a1] text-sm md:text-[14px] leading-[22px] tracking-[-0.14px] mb-[14px] sm:mb-[25px]"
             style={{ fontWeight: 600 }}
           >
             Product
           </p>
-          <div className="flex flex-col space-y-1">
+          <div className="flex flex-col space-y-px">
             {productLinks.map((link) =>
               link.label ? (
                 <Link
                   key={link.label}
                   href={link.href}
-                  className="text-[#fafafa] text-[14px] leading-[1.4] tracking-[-0.14px] hover:opacity-70 transition-opacity py-[6px] sm:py-0"
+                  className="text-[#fafafa] text-sm md:text-[14px] leading-[1.4] tracking-[-0.14px] hover:opacity-70 transition-opacity py-[6px] sm:py-0"
                   style={{ fontWeight: 600 }}
                 >
                   {link.label}
@@ -52,19 +52,19 @@ const Footer = () => {
         {/* Social Column */}
         <div className="flex flex-col">
           <p
-            className="text-[#a1a1a1] text-[14px] leading-[22px] tracking-[-0.14px] mb-[14px] sm:mb-[25px]"
+            className="text-[#a1a1a1] text-sm md:text-[14px] leading-[22px] tracking-[-0.14px] mb-[14px] sm:mb-[25px]"
             style={{ fontWeight: 600 }}
           >
             Social
           </p>
-          <div className="flex flex-col space-y-1">
+          <div className="flex flex-col space-y-px">
             {socialLinks.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#fafafa] text-[14px] leading-[1.4] tracking-[-0.14px] hover:opacity-70 transition-opacity py-[6px] sm:py-0"
+                className="text-[#fafafa] text-sm md:text-[14px] leading-[1.4] tracking-[-0.14px] hover:opacity-70 transition-opacity py-[6px] sm:py-0"
                 style={{ fontWeight: 600 }}
               >
                 {link.label}
