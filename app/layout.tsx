@@ -40,7 +40,7 @@ export default function RootLayout({ children }: LayoutProps) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("antialiased", suisseIntl.variable, "font-sans")}
+      className={cn("antialiased", suisseIntl.variable, "font-sans no-scrollbar")}
     >
       <head>
         <meta name="apple-mobile-web-app-title" content={SITE_NAME} />

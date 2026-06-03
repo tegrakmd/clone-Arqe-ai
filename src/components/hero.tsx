@@ -19,7 +19,7 @@ export const HeroSection: FC<HeroSectionProps> = ({ className = "" }) => {
           <h1 className="max-w-65 text-center text-[40px] leading-8.5 font-semibold tracking-[-0.1rem] text-foreground sm:max-w-none sm:text-[60px] sm:leading-[0.85]">
             <span>Art directed stock library</span>
           </h1>
-          <p className="max-w-73.5 text-center text-[16px] leading-[1.2] font-normal text-muted-foreground">
+          <p className="max-w-73.5 text-center text-sm md:text-[16px] leading-[1.2] font-normal text-muted-foreground">
             Browse &amp; download curated AI visuals — royalty free, 4K, created
             with intent.
           </p>

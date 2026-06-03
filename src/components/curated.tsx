@@ -4,19 +4,19 @@ import { LazyVideo } from "./LazyVideo"
 export function CuratedSection() {
   return (
     <>
-      {" "}
+
       <section
         id="curated_collections"
         className="px-5 pb-[90px] sm:px-10 sm:pb-[138px] lg:px-[88px]"
       >
         <div className="mx-auto flex max-w-[1264px] flex-col items-start gap-5 sm:gap-10 lg:flex-row lg:items-center lg:gap-[116px]">
-          <div className="w-full max-w-[618px] flex-shrink-0">
-            <div className="aspect-[4/3] overflow-hidden rounded-[20px] sm:aspect-square">
+          <div className="w-full max-w-[618px] shrink-0">
+            <div className="aspect-4/3 overflow-hidden rounded-[20px] sm:aspect-square">
               <LazyVideo
                 src={COLLECTIONS_VIDEO}
                 autoPlay
                 loop
-                className="h-full w-full object-cover"
+                className="sizefull object-cover"
               />
             </div>
           </div>

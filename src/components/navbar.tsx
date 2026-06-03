@@ -4,6 +4,7 @@ import type { FC } from "react"
 import { useState, useCallback } from "react"
 import { cn } from "@/lib/utils"
 import { LogoIcon, HamburgerIcon, CloseIcon } from "@/constants/icons"
+import Link from "next/link";
 
 interface NavLinkProps {
   href: string
@@ -41,14 +42,14 @@ const Navbar: FC = () => {
           style={{ backgroundColor: "rgba(23, 23, 23, 0.8)" }}
         >
           <div className="flex h-11 shrink-0 items-center justify-between pr-1 pl-[15px]">
-            <a
+            <Link
               className="flex h-[22px] w-[51px] items-center justify-center"
               href="/"
               onClick={closeMenu}
               aria-label="ARQE Home"
             >
               <LogoIcon />
-            </a>
+            </Link>
             <button
               type="button"
               onClick={toggleMenu}
@@ -68,11 +69,11 @@ const Navbar: FC = () => {
           >
             <div className="min-h-0 overflow-hidden">
               <nav
-                className="flex flex-col gap-4 px-[15px] pt-5 pb-2.5"
+                className="flex flex-col gap-4 px-[15px] pt-5 pb-2.5 "
                 aria-hidden={!isMenuOpen}
                 inert={!isMenuOpen}
               >
-                <div className="flex flex-col *:font-[600] *:text-[16px] space-y-1 mb-2">
+                <div className="flex flex-col *:font-seminbold pb-8 *:md:text-sm *:text-[16px] space-y-2 mb-2">
                   <NavLink
                     href="#features"
                     label="Features"
@@ -88,13 +89,13 @@ const Navbar: FC = () => {
 
                 <div className="h-px w-full bg-white/20" />
 
-                <a
-                  className="flex h-[42px] w-full items-center justify-center rounded-[8px] bg-[#fafafa] text-[14px] font-[600] tracking-[-0.28px] text-[#0a0a0a] transition-opacity duration-200 hover:opacity-80"
+                <Link
+                  className="flex h-[42px] w-full items-center justify-center rounded-[8px] bg-[#fafafa] text-[14px] font-semibold tracking-[-0.28px] text-[#0a0a0a] transition-opacity duration-200 hover:opacity-80"
                   href="/signup"
                   onClick={closeMenu}
                 >
                   Sign Up
-                </a>
+                </Link>
               </nav>
             </div>
           </div>
@@ -104,7 +105,7 @@ const Navbar: FC = () => {
       {/* Desktop Menu */}
       <nav
         className="fixed top-0 right-0 left-0 z-50 hidden px-4 transition-opacity duration-200 sm:px-6 lg:flex lg:justify-center lg:px-0"
-        style={{ paddingTop: 40 }}
+        style={{ paddingTop: 38 }}
       >
         <div
           className="w-full max-w-[800px] items-center overflow-hidden rounded-[10px] p-[8px] backdrop-blur-[15px] lg:flex"
@@ -119,28 +120,28 @@ const Navbar: FC = () => {
             </div>
 
             {/* Center Logo */}
-            <a
+            <Link
               className="absolute left-1/2 -translate-x-1/2"
               href="/"
               aria-label="ARQE Home"
             >
               <LogoIcon />
-            </a>
+            </Link>
 
             {/* Right Buttons */}
-            <div className="flex items-center gap-[4px] *:font-[500]">
-              <a
+            <div className="flex items-center gap-[4px] *:font-medium">
+              <Link
                 className="flex text-[14px] items-center justify-center rounded-[8px] px-[24px] py-[14px]   text-[#fafafa] transition-opacity duration-200 hover:opacity-70"
                 href="/login"
               >
                 Log in
-              </a>
-              <a
-                className="flex text-[14px] items-center justify-center rounded-[8px] bg-[#fafafa] px-[22px] py-[10px]   text-[#0a0a0a] transition-opacity duration-200 hover:opacity-80"
+              </Link>
+              <Link
+                className="flex text-sm md:text-[14px] items-center justify-center rounded-[6px] bg-[#fafafa] px-[22px] py-[10px]   text-[#0a0a0a] transition-opacity duration-200 hover:opacity-80"
                 href="/signup"
               >
                 Sign Up
-              </a>
+              </Link>
             </div>
           </div>
         </div>

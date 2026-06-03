@@ -2,9 +2,9 @@
 import Link from "next/link";
 
 const productLinks = [
-  { href: "#curated_collections", label: "Features" },
-  { href: "/pricing", label: "Pricing" },
-  { href: "#faq", label: "FAQs" },
+  { href: "/", label: "Features" },
+  { href: "/", label: "Pricing" },
+  { href: "/", label: "FAQs" },
   { href: "", label: "" },
 ] as const;
 
@@ -23,18 +23,18 @@ const Footer = () => {
         <div className="flex flex-col">
           <p
             className="text-[#a1a1a1] text-[14px] leading-[22px] tracking-[-0.14px] mb-[14px] sm:mb-[25px]"
-            style={{ fontWeight: 500 }}
+            style={{ fontWeight: 600 }}
           >
             Product
           </p>
-          <div className="flex flex-col">
+          <div className="flex flex-col space-y-1">
             {productLinks.map((link) =>
               link.label ? (
                 <Link
                   key={link.label}
                   href={link.href}
                   className="text-[#fafafa] text-[14px] leading-[1.4] tracking-[-0.14px] hover:opacity-70 transition-opacity py-[6px] sm:py-0"
-                  style={{ fontWeight: 500 }}
+                  style={{ fontWeight: 600 }}
                 >
                   {link.label}
                 </Link>
@@ -53,22 +53,22 @@ const Footer = () => {
         <div className="flex flex-col">
           <p
             className="text-[#a1a1a1] text-[14px] leading-[22px] tracking-[-0.14px] mb-[14px] sm:mb-[25px]"
-            style={{ fontWeight: 500 }}
+            style={{ fontWeight: 600 }}
           >
             Social
           </p>
-          <div className="flex flex-col">
+          <div className="flex flex-col space-y-1">
             {socialLinks.map((link) => (
-              <a
+              <Link
                 key={link.label}
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#fafafa] text-[14px] leading-[1.4] tracking-[-0.14px] hover:opacity-70 transition-opacity py-[6px] sm:py-0"
-                style={{ fontWeight: 500 }}
+                style={{ fontWeight: 600 }}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
         </div>
@@ -80,7 +80,7 @@ const Footer = () => {
           className="text-[#737373] text-[11px] leading-[22px]"
           style={{  fontWeight: 500 }}
         >
-          © 2026 Arqé
+          © 2026 Clone Arqé
         </p>
         <div className="flex items-center gap-[30px]">
           <Link
