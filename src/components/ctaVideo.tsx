@@ -1,5 +1,6 @@
 import { LazyVideo } from "@/components/LazyVideo"
 import { CTA_VIDEO } from "@/datas/videos"
+import Link from "next/link";
 
 export function Cta() {
   return (
@@ -40,7 +41,7 @@ export function Cta() {
                 <span>The library for what&apos;s next.</span>
               </h2>
             </div>
-            <a
+            <Link
               href="/signup"
               className="inline-block rounded-[8px] bg-white/10 text-center text-[14px] leading-[14px] tracking-[-0.28px] text-white backdrop-blur-[20px] transition-all duration-200 hover:bg-white hover:text-[#0a0a0a]"
               style={{
@@ -49,7 +50,7 @@ export function Cta() {
               }}
             >
               Get started from $29/mo
-            </a>
+            </Link>
           </div>
         </div>
       </div>

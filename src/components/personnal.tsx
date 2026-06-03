@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link";
 
 export function PersonnalBoard() {
   return (
@@ -16,7 +17,7 @@ export function PersonnalBoard() {
               Personal boards
             </h2>
             <p
-              className="max-w-[270px] text-[16px] leading-[1.2] text-[#a1a1a1] sm:max-w-none"
+              className="max-w-[270px] text-sm md:text-[16px] leading-[1.2] text-[#a1a1a1] sm:max-w-none"
               style={{ fontWeight: 400 }}
             >
               <span>Curate your own image sets.</span>
@@ -30,12 +31,12 @@ export function PersonnalBoard() {
               </span>
             </p>
           </div>
-          <a
-            href="/signup"
+          <Link
+            href="/"
             className="inline-block rounded-[8px] bg-[#fafafa] px-[24px] py-[14px] text-[14px] leading-[14px] font-medium tracking-[-0.28px] text-[#0a0a0a] transition-opacity duration-200 hover:opacity-80"
           >
             Create a board
-          </a>
+          </Link>
         </div>
 
         <div

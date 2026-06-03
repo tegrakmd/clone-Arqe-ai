@@ -1,4 +1,3 @@
-// components/Footer.tsx
 import Link from "next/link";
 
 const productLinks = [
@@ -7,13 +6,11 @@ const productLinks = [
   { href: "/", label: "FAQs" },
   { href: "", label: "" },
 ] as const;
-
 const socialLinks = [
   { href: "https://www.instagram.com/arqe_ai", label: "Instagram" },
   { href: "https://www.threads.com/@arqe_ai", label: "Threads" },
   { href: "https://x.com/arqe_ai", label: "X.com" },
 ] as const;
-
 const Footer = () => {
   return (
     <div className="max-w-[922px] mx-auto  py-8 px-6 md:px-12">
@@ -102,5 +99,4 @@ const Footer = () => {
     </div>
   );
 };
-
 export default Footer;

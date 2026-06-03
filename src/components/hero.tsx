@@ -3,6 +3,7 @@
 import type { FC } from "react"
 import { LazyVideo } from "./LazyVideo"
 import { HERO_VIDEO } from "@/datas/videos"
+import Link from "next/link";
 
 interface HeroSectionProps {
   className?: string
@@ -24,12 +25,12 @@ export const HeroSection: FC<HeroSectionProps> = ({ className = "" }) => {
             with intent.
           </p>
           <div className="mt-3.75">
-            <a
-              href="/signup"
+            <Link
+              href="/"
               className="inline-block rounded-[8px] bg-[#fafafa] px-6 py-3.5 text-[14px] leading-3.5 font-medium tracking-[-0.28px] text-[#0a0a0a] transition-opacity duration-200 hover:opacity-80"
             >
               Get started
-            </a>
+            </Link>
           </div>
         </div>
 

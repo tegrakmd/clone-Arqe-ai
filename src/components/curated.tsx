@@ -1,5 +1,6 @@
 import { COLLECTIONS_VIDEO } from "@/datas/videos"
 import { LazyVideo } from "./LazyVideo"
+import Link from "next/link";
 
 export function CuratedSection() {
   return (
@@ -30,7 +31,7 @@ export function CuratedSection() {
                 Curated collections
               </h2>
               <p
-                className="max-w-[280px] text-[16px] leading-[1.2] text-[#a1a1a1] sm:max-w-none"
+                className="max-w-[280px] text-sm md:text-[16px] leading-[1.2] text-[#a1a1a1] sm:max-w-none"
                 style={{ fontWeight: 400 }}
               >
                 <span>Themed sets handpicked by the Arqé</span>
@@ -44,12 +45,12 @@ export function CuratedSection() {
                 </span>
               </p>
             </div>
-            <a
-              href="/signup"
+            <Link
+              href="/"
               className="inline-block rounded-[8px] bg-[#fafafa] px-[24px] py-[14px] text-[14px] leading-[14px] font-medium tracking-[-0.28px] text-[#0a0a0a] transition-opacity duration-200 hover:opacity-80"
             >
               Explore now
-            </a>
+            </Link>
           </div>
         </div>
       </section>
