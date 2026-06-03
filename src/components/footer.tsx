@@ -16,7 +16,7 @@ const socialLinks = [
 
 const Footer = () => {
   return (
-    <div className="max-w-[922px] mx-auto  p-8 md:px-12">
+    <div className="max-w-[922px] mx-auto  py-8 px-6 md:px-12">
       {/* Link Columns */}
       <div className="flex gap-[50px] mb-[100px] sm:mb-[200px]">
         {/* Product Column */}
