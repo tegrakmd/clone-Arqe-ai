@@ -73,7 +73,7 @@ const Navbar: FC = () => {
                 aria-hidden={!isMenuOpen}
                 inert={!isMenuOpen}
               >
-                <div className="flex flex-col *:font-seminbold pb-8 *:md:text-sm *:text-[16px] space-y-2 mb-2">
+                <div className="flex flex-col *:font-seminbold pb-8 *:font-semibold  *:text-sm  space-y-2 mb-2">
                   <NavLink
                     href="#features"
                     label="Features"
