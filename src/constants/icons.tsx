@@ -60,7 +60,7 @@ export const HamburgerIcon: IconComponent = (props) => (
   // </svg>
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="45"
+    width="28"
     height="7"
     fill="none"
     stroke="#ffffff"
