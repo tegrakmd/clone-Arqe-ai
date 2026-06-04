@@ -4,7 +4,7 @@ import type { FC } from "react"
 import { useState, useCallback } from "react"
 import { cn } from "@/lib/utils"
 import { LogoIcon, HamburgerIcon, CloseIcon } from "@/constants/icons"
-import Link from "next/link";
+import Link from "next/link"
 
 interface NavLinkProps {
   href: string
@@ -41,9 +41,9 @@ const Navbar: FC = () => {
           className="overflow-hidden rounded-[10px] p-2.5 font-sans backdrop-blur-[15px]"
           style={{ backgroundColor: "rgba(23, 23, 23, 0.8)" }}
         >
-          <div className="flex h-11 shrink-0 items-center justify-between pr-1 pl-[15px]">
+          <div className="flex h-11 shrink-0 items-center justify-between pr-1 pl-3.75">
             <Link
-              className="flex h-[22px] w-[51px] items-center justify-center"
+              className="w-12.55 flex h-5.5 items-center justify-center"
               href="/"
               onClick={closeMenu}
               aria-label="ARQE Home"
@@ -69,11 +69,11 @@ const Navbar: FC = () => {
           >
             <div className="min-h-0 overflow-hidden">
               <nav
-                className="flex flex-col gap-4 px-[15px] pt-5 pb-2.5 "
+                className="flex flex-col gap-4 px-[15px] pt-5 pb-2.5"
                 aria-hidden={!isMenuOpen}
                 inert={!isMenuOpen}
               >
-                <div className="flex flex-col *:font-seminbold pb-8 *:font-semibold  *:text-sm  space-y-2 mb-2">
+                <div className="*:font-seminbold mb-2 flex flex-col space-y-2 pb-8 *:text-sm *:font-semibold">
                   <NavLink
                     href="#features"
                     label="Features"
@@ -131,13 +131,13 @@ const Navbar: FC = () => {
             {/* Right Buttons */}
             <div className="flex items-center gap-[4px] *:font-medium">
               <Link
-                className="flex text-[14px] items-center justify-center rounded-[8px] px-[24px] py-[14px]   text-[#fafafa] transition-opacity duration-200 hover:opacity-70"
+                className="flex items-center justify-center rounded-[8px] px-[24px] py-[14px] text-[14px] text-[#fafafa] transition-opacity duration-200 hover:opacity-70"
                 href="/login"
               >
                 Log in
               </Link>
               <Link
-                className="flex text-sm md:text-[14px] items-center justify-center rounded-[6px] bg-[#fafafa] px-[22px] py-[10px]   text-[#0a0a0a] transition-opacity duration-200 hover:opacity-80"
+                className="flex items-center justify-center rounded-[6px] bg-[#fafafa] px-[22px] py-[10px] text-sm text-[#0a0a0a] transition-opacity duration-200 hover:opacity-80 md:text-[14px]"
                 href="/signup"
               >
                 Sign Up

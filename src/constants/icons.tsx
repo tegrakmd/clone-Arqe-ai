@@ -38,25 +38,37 @@ export const LogoIcon: IconComponent = (props) => (
 
 // ─────────────────────── Hamburger Icon ──────────────────────
 export const HamburgerIcon: IconComponent = (props) => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
-    <line
-      x1="4"
-      y1="8"
-      x2="20"
-      y2="8"
-      stroke="#ffffff"
-      strokeWidth="2"
-      strokeLinecap="round"
-    />
-    <line
-      x1="4"
-      y1="16"
-      x2="20"
-      y2="16"
-      stroke="#ffffff"
-      strokeWidth="2"
-      strokeLinecap="round"
-    />
+  // <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+  //   <line
+  //     x1="4"
+  //     y1="8"
+  //     x2="20"
+  //     y2="8"
+  //     stroke="#ffffff"
+  //     strokeWidth="2"
+  //     strokeLinecap="round"
+  //   />
+  //   <line
+  //     x1="4"
+  //     y1="16"
+  //     x2="20"
+  //     y2="16"
+  //     stroke="#ffffff"
+  //     strokeWidth="2"
+  //     strokeLinecap="round"
+  //   />
+  // </svg>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="45"
+    height="7"
+    fill="none"
+    stroke="#ffffff"
+    // strokeWidth="2"
+    // strokeLinecap="round"
+    {...props}
+  >
+    <path d="M0 0h45v1H0zM0 6h45v1H0z"></path>
   </svg>
 )
 
