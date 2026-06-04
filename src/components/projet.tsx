@@ -310,7 +310,7 @@ const CreativeWork = () => {
             }}
           >
             <svg
-              className="h-[18px] w-[18px]"
+              className="size-4.5"
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -326,7 +326,7 @@ const CreativeWork = () => {
           </button>
           <button
             onClick={handleNext}
-            className="flex h-[34px] w-[34px] items-center justify-center rounded-[4px] bg-[#1C1C1C] text-white"
+            className="flex size-8.5 items-center justify-center rounded-lg bg-[#1C1C1C] text-white"
             aria-label="Next"
             tabIndex={0}
             style={{
@@ -338,7 +338,7 @@ const CreativeWork = () => {
             }}
           >
             <svg
-              className="h-[18px] w-[18px]"
+              className="size-4.5"
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
