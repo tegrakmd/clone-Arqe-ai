@@ -6,6 +6,12 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "raw.githubusercontent.com",
+        port: "",
+        pathname: "/**", // Allows all paths on this hostname
+      },
+      {
+        protocol: "https",
         hostname: "arqe-storage-images.nyc3.cdn.digitaloceanspaces.com",
         pathname: "/**",
       },

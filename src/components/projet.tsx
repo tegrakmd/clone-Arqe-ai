@@ -23,7 +23,7 @@ const creativeWorksData: CreativeWorkItem[] = [
   {
     id: "developer",
     type: "image",
-    src: "/1.jpg",
+    src: "https://raw.githubusercontent.com/tegrakmd/images-stock/main/lummi/lummi/lummi_8.webp",
     alt: "CEO",
     title: "Web Developer Tegra Kmd",
   },
@@ -260,7 +260,8 @@ const CreativeWork = () => {
                       src={item.src}
                       alt={item.alt}
                       fill
-                      sizes="(max-width: 1024px) 45vw, 275px"
+                      // sizes="(max-width: 1024px) 48vw, 470px"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 60vw, 686px"
                       className="object-cover"
                       loading={item.id === "developer" ? "eager" : "lazy"}
                       fetchPriority={item.id === "developer" ? "high" : "auto"}
@@ -280,7 +281,7 @@ const CreativeWork = () => {
 
                 {/* Titre */}
                 <h3
-                  className="mt-3 text-sm text-foreground sm:mt-[15px] sm:text-base"
+                  className="mt-3 text-sm text-foreground sm:mt-3.75 sm:text-base"
                   style={{
                     lineHeight: 1.4,
                     color: "#fafafa",
@@ -294,10 +295,10 @@ const CreativeWork = () => {
         </div>
 
         {/* Boutons de navigation */}
-        <div className="mt-[20px] flex justify-end gap-2 px-5 sm:gap-[10px] sm:px-8 lg:px-0">
+        <div className="mt-5 flex justify-end gap-2 px-5 sm:gap-2.5 sm:px-8 lg:px-0">
           <button
             onClick={handlePrev}
-            className="flex h-[34px] w-[34px] items-center justify-center rounded-[4px] bg-[#1C1C1C] text-white"
+            className="flex size-8.5 items-center justify-center rounded-lg bg-[#1C1C1C] text-white"
             aria-label="Previous"
             tabIndex={0}
             style={{
